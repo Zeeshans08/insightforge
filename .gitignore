@@ -1,0 +1,28 @@
+# Virtual environment
+backend/venv/
+venv/
+*.pyc
+__pycache__/
+
+# Node modules & build outputs
+frontend/node_modules/
+node_modules/
+frontend/dist/
+dist/
+
+# Local database & uploaded data
+backend/insightforge.db
+backend/uploads/
+backend/cleaned_data/
+backend/reports/
+
+# Environment files
+backend/.env
+.env
+.env.local
+
+# IDE & OS files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

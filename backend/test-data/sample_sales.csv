@@ -1,0 +1,11 @@
+OrderID,Product,Category,Quantity,Price,Country,OrderDate
+1001,Wireless Mouse,Electronics,3,15.99,UK,2024-01-05
+1002,Office Chair,Furniture,1,89.50,Germany,2024-01-06
+1003,,Electronics,2,,UK,2024-01-07
+1004,USB Cable,Electronics,5,4.99,France,2024-01-08
+1005,Desk Lamp,Furniture,2,22.00,UK,
+1006,Wireless Mouse,Electronics,1,15.99,Germany,2024-01-10
+1007,Notebook,Stationery,10,1.50,UK,2024-01-11
+1008,Office Chair,Furniture,-1,89.50,France,2024-01-12
+1009,Desk Lamp,Furniture,3,22.00,UK,2024-01-13
+1010,USB Cable,Electronics,2,4.99,,2024-01-14
