@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import { ShieldCheck, Lock, User, Key, AlertCircle, ArrowRight, RefreshCw } from 'lucide-react';
+import { ShieldCheck, Lock, User, Key, AlertCircle, ArrowRight, RefreshCw, Sparkles } from 'lucide-react';
 
 export default function AdminLogin({ API_BASE_URL, onLoginSuccess }) {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('admin');
+  const [password, setPassword] = useState('insightforge123');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
   const [showPass, setShowPass] = useState(false);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    if (e) e.preventDefault();
     if (!username.trim() || !password.trim()) {
       setErrorMsg('Please enter both username and password.');
       return;
@@ -37,10 +37,16 @@ export default function AdminLogin({ API_BASE_URL, onLoginSuccess }) {
     }
   };
 
+  const handleAutoFillAndLogin = () => {
+    setUsername('admin');
+    setPassword('insightforge123');
+    handleSubmit();
+  };
+
   return (
     <div style={{
-      maxWidth: '440px',
-      margin: '4rem auto',
+      maxWidth: '460px',
+      margin: '3rem auto',
       padding: '0 1rem',
       animation: 'fadeIn 0.3s ease-in-out'
     }}>
@@ -63,9 +69,33 @@ export default function AdminLogin({ API_BASE_URL, onLoginSuccess }) {
         <h2 style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '0.4rem', color: '#f8fafc' }}>
           Admin Portal Authentication
         </h2>
-        <p style={{ fontSize: '0.85rem', color: '#94a3b8', marginBottom: '2rem' }}>
+        <p style={{ fontSize: '0.85rem', color: '#94a3b8', marginBottom: '1.5rem' }}>
           Restricted access for system administrator telemetry & dataset control
         </p>
+
+        {/* Credentials Helper Badge */}
+        <div style={{
+          background: 'rgba(99, 102, 241, 0.1)',
+          border: '1px solid rgba(99, 102, 241, 0.25)',
+          borderRadius: '10px',
+          padding: '0.75rem',
+          marginBottom: '1.5rem',
+          fontSize: '0.82rem',
+          color: '#a5b4fc',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between'
+        }}>
+          <span>Default: <strong>admin</strong> / <strong>insightforge123</strong></span>
+          <button 
+            type="button" 
+            className="btn btn-secondary" 
+            onClick={handleAutoFillAndLogin}
+            style={{ fontSize: '0.75rem', padding: '0.25rem 0.6rem' }}
+          >
+            <Sparkles size={12} color="#a5b4fc" /> 1-Click Fill & Login
+          </button>
+        </div>
 
         {errorMsg && (
           <div style={{

@@ -1,7 +1,7 @@
 import React from 'react';
-import { Sparkles, Database, LayoutDashboard, Zap, RefreshCw } from 'lucide-react';
+import { Sparkles, Database, ShieldCheck, LayoutDashboard, Zap, RefreshCw } from 'lucide-react';
 
-export default function Navbar({ activeDataset, onSelectDemo, onReset, currentView, onGoUserWorkspace }) {
+export default function Navbar({ activeDataset, onSelectDemo, onReset, currentView, onToggleAdmin }) {
   return (
     <header style={{
       display: 'flex',
@@ -40,8 +40,8 @@ export default function Navbar({ activeDataset, onSelectDemo, onReset, currentVi
 
       <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
         {currentView === 'admin' ? (
-          <button className="btn btn-primary" onClick={onGoUserWorkspace} style={{ fontSize: '0.85rem' }}>
-            <LayoutDashboard size={16} /> Go to User Workspace
+          <button className="btn btn-primary" onClick={onToggleAdmin} style={{ fontSize: '0.85rem' }}>
+            <LayoutDashboard size={16} /> User Workspace
           </button>
         ) : (
           <>
@@ -57,6 +57,16 @@ export default function Navbar({ activeDataset, onSelectDemo, onReset, currentVi
 
             <button className="btn btn-secondary" onClick={onSelectDemo} style={{ fontSize: '0.85rem' }}>
               <Sparkles size={16} color="#a5b4fc" /> Try 1-Click Demo
+            </button>
+
+            {/* Admin Portal Gateway Button */}
+            <button 
+              className="btn btn-secondary"
+              onClick={onToggleAdmin}
+              style={{ fontSize: '0.85rem', borderColor: 'rgba(236, 72, 153, 0.4)' }}
+              title="Admin Portal Gateway"
+            >
+              <ShieldCheck size={16} color="#ec4899" /> Admin Portal
             </button>
 
             {activeDataset && (
