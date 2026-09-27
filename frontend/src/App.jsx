@@ -7,6 +7,7 @@ import DataCleaner from './components/DataCleaner';
 import EDADashboard from './components/EDADashboard';
 import AgentChat from './components/AgentChat';
 import AdminDashboard from './components/AdminDashboard';
+import AdminLogin from './components/AdminLogin';
 import { API_BASE_URL } from './config';
 
 export default function App() {
