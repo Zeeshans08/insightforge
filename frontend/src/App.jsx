@@ -17,31 +17,38 @@ export default function App() {
   
   // Route & Auth State
   const [currentView, setCurrentView] = useState(() => {
-    return window.location.pathname.startsWith('/admin') ? 'admin' : 'workspace';
+    const path = window.location.pathname;
+    const hash = window.location.hash;
+    return (path.includes('admin') || hash.includes('admin')) ? 'admin' : 'workspace';
   });
   const [adminToken, setAdminToken] = useState(() => {
     return localStorage.getItem('insightforge_admin_token') || '';
   });
 
   useEffect(() => {
-    const handlePopState = () => {
-      if (window.location.pathname.startsWith('/admin')) {
+    const handleLocationChange = () => {
+      const path = window.location.pathname;
+      const hash = window.location.hash;
+      if (path.includes('admin') || hash.includes('admin')) {
         setCurrentView('admin');
       } else {
         setCurrentView('workspace');
       }
     };
-    window.addEventListener('popstate', handlePopState);
-    return () => window.removeEventListener('popstate', handlePopState);
+
+    handleLocationChange();
+    window.addEventListener('popstate', handleLocationChange);
+    window.addEventListener('hashchange', handleLocationChange);
+    return () => {
+      window.removeEventListener('popstate', handleLocationChange);
+      window.removeEventListener('hashchange', handleLocationChange);
+    };
   }, []);
 
   const navigateTo = (path) => {
     window.history.pushState({}, '', path);
-    if (path.startsWith('/admin')) {
-      setCurrentView('admin');
-    } else {
-      setCurrentView('workspace');
-    }
+    const isAdmin = path.includes('admin');
+    setCurrentView(isAdmin ? 'admin' : 'workspace');
   };
 
   const handleAdminLoginSuccess = (token) => {
